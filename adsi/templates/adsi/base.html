@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ADSI - {% block titulo %}Inicio{% endblock %}</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{% static 'adsi/css/bootstrap.min.css'%}">
+</head>
+
+<body>
+  <img src="{% static 'adsi/img/logo.jpeg' %}" width="10%">
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand -->
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'adsi:inicio'%}">Inicio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Instructores</a>
+      </li>
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Aprendices
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'adsi:crearAprendiz' %}">Crear</a>
+          <a class="dropdown-item" href="{% url 'adsi:listarAprendices' %}"> Listar</a>
+          <a class="dropdown-item" href="#">Link 3</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="{% url 'adsi:login' %}" method="POST">
+      {% csrf_token %}
+      <input type="text" name="usuario" placeholder="usuario" class="form-control col-2 mr-sm-2">
+      <input type="password" name="clave" class="form-control col-2 mr-sm-2">
+      <button type="submit"  class="btn btn-success"> Login</button>
+
+    </form>
+  </nav>
+
+  <section>
+    {% block contenedor %}
+    {% endblock %}
+  </section>
+
+
+  <script src="{% static 'adsi/js/jquery-3.3.1.slim.min.js' %}"></script>
+  <script src="{% static 'adsi/js/popper.min.js' %}"></script>
+  <script src="{% static 'adsi/js/bootstrap.min.js' %}"></script>
+
+</body>
+
+</html>

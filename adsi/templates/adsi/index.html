@@ -1,0 +1,13 @@
+{% extends 'adsi/base.html' %}
+
+{% block titulo %}Principal{% endblock %}
+
+{% block contenedor %}
+<h1>Página principal</h1>
+{% if request.session.logeado%}
+    <p> Logeado </p>
+    <p><a href="{% url 'adsi:logout'%}">Cerrar session</a></p>
+{% else %}
+    <p> No logeado</p>
+{% endif %}
+{% endblock %}        

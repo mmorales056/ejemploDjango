@@ -1,0 +1,17 @@
+{% extends 'adsi/base.html' %}
+{% block titulo %}Formulario Aprendiz{% endblock %}
+
+{% block contenedor %}
+        <h1>Crear Aprendiz</h1>
+        <form action="{% url 'adsi:guardarAprendiz' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="nombre" placeholder="Nombres" required="required"/>
+            <br><input type="text" name="apellido" placeholder="Apellidos"/>
+            <br><input type="email" name="correo" placeholder="Correo"/>
+            <br><input type="number" name="identificacion" placeholder="Cédula"/>
+            <br><input type="text" name="usuario" placeholder="Nombre de Usuario"/>
+            <br><input type="password" name="clave" placeholder="Contraseña"/>
+            <br>
+            <input type="submit" value="Enviar"/>
+        </form>
+{% endblock %}

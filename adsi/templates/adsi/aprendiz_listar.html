@@ -1,0 +1,26 @@
+{% extends 'adsi/base.html' %}
+{% block titulo %}Listado de Aprendices{% endblock %}
+{% block contenedor %}
+
+        <h1>Aprendices</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Acciones</th>
+            </tr>
+            <tbody>
+            {% for registro in datos %}
+                <tr>
+                    <td>{{ registro.nombre }}</td>
+                    <td>{{ registro.apellido }}</td>
+                    <td>Ver - 
+                        <a href="{% url 'adsi:editarAprendices' registro.id %}">Editar</a> -
+                        <a href="{% url 'adsi:eliminarAprendiz' registro.id %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'adsi:crearAprendiz' %}">Crear Aprendiz</a>
+{% endblock %}
