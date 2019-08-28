@@ -10,8 +10,7 @@ class Aprendiz(models.Model):
     clave = models.CharField(max_length=150)
     roles=(
         ('1','Aprendiz'),
-        ('2', 'Vocero'),
-        ('3','vago')
+        ('2', 'Vocero')       
     )
     rol = models.CharField(max_length=1, choices=roles, default='1')
     #métodos

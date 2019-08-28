@@ -5,7 +5,11 @@
 {% block contenedor %}
 <h1>Página principal</h1>
 {% if request.session.logeado%}
-    <p> Logeado </p>
+    {% if request.session.logeado.3 == '1' %}
+        <h3> Aprendiz</h3><br>
+    {% elif request.session.logeado.3 == '2' %}
+        <h3> Vocero </h3><br>    
+    {% endif %}
     <p><a href="{% url 'adsi:logout'%}">Cerrar session</a></p>
 {% else %}
     <p> No logeado</p>

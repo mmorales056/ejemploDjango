@@ -34,7 +34,11 @@ def index(request):
     return render(request, 'adsi/index.html', contexto)
 
 def aprendizFormulario(request):
-    return render(request, 'adsi/aprendiz_formulario.html')
+    ses = request.session.get('logeado',False)
+    if ses and (ses[3]=="2"):
+        return render(request, 'adsi/aprendiz_formulario.html')
+    else:
+        return HttpResponse("Usted no tiene persmisos pa crear aprendices")
 
 def aprendizGuardar(request):
     try:
@@ -53,9 +57,14 @@ def aprendizGuardar(request):
         return HttpResponse(e)
 
 def aprendizListado(request):
-    q = Aprendiz.objects.all() #select * from aprendiz
-    contexto = {'datos': q }
-    return render(request, 'adsi/aprendiz_listar.html', contexto)
+    ses = request.session.get('logeado',False)
+    if ses and (ses[3]=='1' or ses[3]=='2'):
+        q = Aprendiz.objects.all() #select * from aprendiz
+        contexto = {'datos': q }
+        return render(request, 'adsi/aprendiz_listar.html', contexto)
+    else:
+        return HttpResponse("No tiene permisos para ver el listado")
+
 
 def aprendizEliminar(request, id):
     try:
