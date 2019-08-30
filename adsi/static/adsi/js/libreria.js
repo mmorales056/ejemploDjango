@@ -16,13 +16,14 @@ function verAprendiz(ruta) {
 function verAprendiz2(ruta) {
     $.ajax({
         url: ruta,
+        dataType: "json",
         success: function(respuesta) {
             document.getElementById('resultado').innerHTML = respuesta;
             console.log(respuesta);
 
         },
         error: function() {
-            console.log("No se a podido obtener la informacion");
+            document.getElementById('resultado').innerHTML = "No se a podido traer la informacion";
         }
     })
 

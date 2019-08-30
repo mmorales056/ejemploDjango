@@ -1,6 +1,6 @@
 #from .models import Question
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 
 from adsi.models import Aprendiz, Fichas
@@ -111,8 +111,10 @@ def verAprendiz(request, id):
 
 def verAprendizJson(request, id):
     try:
-        q = Aprendiz.objects.get(pk=id)
-        return render(request,'adsi/aprendiz_ver.html', { 'aprendiz':q })
+        q = Aprendiz.objects.get(pk=id).values()
+        dato= list(q)
+        return JsonResponse(dato,safe=False)
+        #return render(request,'adsi/aprendiz_ver.html', { 'aprendiz':q })
     except Exception as e:
         return HttpResponse(e)
 
