@@ -14,6 +14,8 @@ urlpatterns = [
     path('actualizarAprendiz/', views.actualizarAprendiz, name='actualizarAprendiz'),
     path('login/',views.login, name='login'),
     path('logout/',views.logout, name='logout'),
+    path('verAprendiz/<int:id>', views.verAprendiz, name="verAprendiz"),
+    path('verAprendizJson/<int:id>', views.verAprendizJson, name="verAprendizJson")
 
 
 ]

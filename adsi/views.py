@@ -38,7 +38,8 @@ def aprendizFormulario(request):
     if ses and (ses[3]=="2"):
         return render(request, 'adsi/aprendiz_formulario.html')
     else:
-        return HttpResponse("Usted no tiene persmisos pa crear aprendices")
+        contexto={'s': 'fallo'}
+        return render(request, 'adsi/index.html',contexto)
 
 def aprendizGuardar(request):
     try:
@@ -48,7 +49,8 @@ def aprendizGuardar(request):
             correo = request.POST['correo'], 
             identificacion = request.POST['identificacion'], 
             usuario = request.POST['usuario'], 
-            clave = request.POST['clave'] 
+            clave = request.POST['clave'],
+            rol= request.POST['rol']
         )
         aprendiz.save()
         return HttpResponseRedirect(reverse('adsi:listarAprendices', args=()))
@@ -92,8 +94,28 @@ def actualizarAprendiz(request):
         q.identificacion = request.POST['identificacion']
         q.usuario = request.POST['usuario']
         q.clave = request.POST['clave']
+        q.rol = request.POST['rol']
+       
         #update where objeto q
         q.save()
         return HttpResponseRedirect(reverse('adsi:listarAprendices', args=()))
     except Exception as e:
         return HttpResponse(e)
+
+def verAprendiz(request, id):
+    try:
+        q = Aprendiz.objects.get(pk=id)
+        return render(request,'adsi/aprendiz_ver.html', { 'aprendiz':q })
+    except Exception as e:
+        return HttpResponse(e)
+
+def verAprendizJson(request, id):
+    try:
+        q = Aprendiz.objects.get(pk=id)
+        return render(request,'adsi/aprendiz_ver.html', { 'aprendiz':q })
+    except Exception as e:
+        return HttpResponse(e)
+
+
+    
+

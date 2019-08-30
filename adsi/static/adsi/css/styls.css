@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'mifuente';
+    src: url('../fonts/Welcome.ttf');
+    /* IE9 Compat Modes */
+}
+
+.mifuente {
+    font-family: mifuente;
+    font-size: 35px;
+}

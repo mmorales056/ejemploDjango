@@ -1,19 +1,21 @@
-{% extends 'adsi/base.html' %}
-{% block titulo %}Editar Aprendiz{% endblock %}
+{% extends 'adsi/base.html' %} {% block titulo %}Editar Aprendiz{% endblock %} {% block contenedor %}
 
-{% block contenedor %}
-
-        <h1>Editar Aprendiz {{ datos.id }}</h1>
-        <form action="{% url 'adsi:actualizarAprendiz' %}" method="POST">
-            {% csrf_token %}
-            <input type="hidden" name="id" value="{{ datos.id }}" readonly="readonly"/>
-            <input type="text" name="nombre" value="{{ datos.nombre }}" placeholder="Nombres" required="required"/>
-            <br><input type="text" name="apellido" value="{{ datos.apellido }}" placeholder="Apellidos"/>
-            <br><input type="email" name="correo" value="{{ datos.correo }}" placeholder="Correo"/>
-            <br><input type="number" name="identificacion" value="{{ datos.identificacion }}" placeholder="Cédula"/>
-            <br><input type="text" name="usuario" value="{{ datos.usuario }}" placeholder="Nombre de Usuario"/>
-            <br><input type="password" name="clave" value="{{ datos.clave }}" placeholder="Contraseña"/>
-            <br>
-            <input type="submit" value="Actualizar"/>
-        </form>
+<h1>Editar Aprendiz {{ datos.nombre }}</h1>
+<form action="{% url 'adsi:actualizarAprendiz' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{ datos.id }}" readonly="readonly" />
+    <input type="text" name="nombre" value="{{ datos.nombre }}" placeholder="Nombres" required="required" />
+    <br><input type="text" name="apellido" value="{{ datos.apellido }}" placeholder="Apellidos" />
+    <br><input type="email" name="correo" value="{{ datos.correo }}" placeholder="Correo" />
+    <br><input type="number" name="identificacion" value="{{ datos.identificacion }}" placeholder="Cédula" />
+    <br><input type="text" name="usuario" value="{{ datos.usuario }}" placeholder="Nombre de Usuario" />
+    <br> <select name="rol">
+                    <option value="0" ></option>
+                    <option value="1" {% if datos.rol == '1' %} selected="selected" {% endif %}>Aprendiz</option>
+                    <option value="2"  {% if datos.rol == '2' %} selected="selected" {% endif %}>Vocero</option>
+                </select>
+    <br><input type="password" name="clave" value="{{ datos.clave }}" placeholder="Contraseña" />
+    <br>
+    <input type="submit" value="Actualizar" />
+</form>
 {% endblock %}

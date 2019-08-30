@@ -1,0 +1,22 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Identificacion</th>
+            <th>Usuario</th>
+            <th>Rol</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ aprendiz.id }}</td>
+            <td>{{ aprendiz.nombre }}</td>
+            <td>{{ aprendiz.correo }}</td>
+            <td>{{ aprendiz.identificacion }}</td>
+            <td>{{ aprendiz.usuario}}</td>
+            <td>{{ aprendiz.get_rol_display }}</td>
+        </tr>
+    </tbody>
+</table>
