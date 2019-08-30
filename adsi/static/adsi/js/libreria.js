@@ -18,9 +18,16 @@ function verAprendiz2(ruta) {
         url: ruta,
         dataType: "json",
         success: function(respuesta) {
-            document.getElementById('resultado').innerHTML = respuesta;
-            console.log(respuesta);
+            var salida = "";
+            salida = "<table class= 'table'>";
+            $.each(respuesta, function(indice, valor) {
+                salida += "<tr><td>" + indice + "</td><td>" + valor + "</td></tr>"
+            });
+            salida += "</table>";
+            document.getElementById('resultado').innerHTML = salida;
 
+
+            console.log(respuesta);
         },
         error: function() {
             document.getElementById('resultado').innerHTML = "No se a podido traer la informacion";

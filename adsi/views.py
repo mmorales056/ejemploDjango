@@ -2,8 +2,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
-
 from adsi.models import Aprendiz, Fichas
+from django.forms.models import model_to_dict
 
 # Create your views here.
 def login(request):
@@ -111,10 +111,9 @@ def verAprendiz(request, id):
 
 def verAprendizJson(request, id):
     try:
-        q = Aprendiz.objects.get(pk=id).values()
-        dato= list(q)
-        return JsonResponse(dato,safe=False)
-        #return render(request,'adsi/aprendiz_ver.html', { 'aprendiz':q })
+        q = Aprendiz.objects.get(pk=id)
+        diccionario = model_to_dict(q)
+        return JsonResponse(diccionario)
     except Exception as e:
         return HttpResponse(e)
 
