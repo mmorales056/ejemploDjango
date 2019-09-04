@@ -7,7 +7,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="{% static 'adsi/css/bootstrap.min.css'%}">
-  <link rel="stylesheet" href="{% static 'adsi/css/styls.css'%}">
+  <link rel="stylesheet" href="{% static 'adsi/charJS/Chart.min.css'%}">
+    <link rel="stylesheet" href="{% static 'adsi/css/styls.css'%}">
+
+
 </head>
 
 <body>
@@ -23,6 +26,7 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Instructores</a>
       </li>
+      
 
       <!-- Dropdown -->
       <li class="nav-item dropdown">
@@ -31,7 +35,6 @@
         </a>
         <div class="dropdown-menu">
           {% if request.session.logeado.3 == '1' %}
-            <a class="dropdown-item disabled" href="{% url 'adsi:crearAprendiz' %}">Crear</a>
             <a class="dropdown-item" href="{% url 'adsi:listarAprendices' %}"> Listar</a>          
             {% elif request.session.logeado.3 == '2' %}
               <a class="dropdown-item" href="{% url 'adsi:crearAprendiz' %}">Crear</a>
@@ -58,6 +61,7 @@
   <script src="{% static 'adsi/js/jquery-3.4.1.min.js' %}"></script>
   <script src="{% static 'adsi/js/popper.min.js' %}"></script>
   <script src="{% static 'adsi/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'adsi/charsJS/Chart.min.js' %}"></script>
   <script src="{% static 'adsi/js/libreria.js' %}"></script>
 
 

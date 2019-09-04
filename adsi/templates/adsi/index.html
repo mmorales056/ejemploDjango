@@ -1,25 +1,21 @@
-{% extends 'adsi/base.html' %}
-
-{% block titulo %}Principal{% endblock %}
-
-{% block contenedor %}
+{% extends 'adsi/base.html' %} {% block titulo %}Principal{% endblock %} {% block contenedor %}
 <h1>Página principal</h1>
-{% if s == 'fallo'  %}
-    <div class="alert alert-danger" role="alert">
-        No tiene estos permisos
+{% if s == 'fallo' %}
+<div class="alert alert-danger" role="alert">
+    No tiene estos permisos
 </div>
+{% else %} {% if request.session.logeado%} {% if request.session.logeado.3 == '1' %}
+
+<h3> Aprendiz </h3><br> {% elif request.session.logeado.3 == '2' %}
+<h3> Vocero </h3><br> {% endif %}
+<p><a href="{% url 'adsi:logout'%}">Cerrar session</a></p>
 {% else %}
-{% if request.session.logeado%}
-    {% if request.session.logeado.3 == '1' %}
-        
-        <h3> Aprendiz </h3><br>
-        
-    {% elif request.session.logeado.3 == '2' %}
-        <h3> Vocero </h3><br>    
-    {% endif %}
-    <p><a href="{% url 'adsi:logout'%}">Cerrar session</a></p>
-{% else %}
-    <p> No logeado</p>
+<p> No logeado</p>
 {% endif %}
-{% endif %}
-{% endblock %}        
+ {% endif %}
+
+ <a href="{% url 'adsi:reportePdf' %}" target="_black"> Generar pdf </a>
+
+<input type="button" onclick=graficos() value="graficos">
+<canvas id="myChart" width="400" height="400"></canvas> 
+{% endblock %}

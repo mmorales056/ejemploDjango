@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ 
+    <title>Reporte</title>
+    <style>
+        @page {
+            size: a4 portrait;
+            @frame header_frame {
+                /* Static Frame */
+                -pdf-frame-content: header_content;
+                left: 50pt;
+                width: 512pt;
+                top: 50pt;
+                height: 40pt;
+            }
+            @frame content_frame {
+                /* Content Frame */
+                left: 50pt;
+                width: 512pt;
+                top: 90pt;
+                height: 632pt;
+            }
+            @frame footer_frame {
+                /* Another static Frame */
+                -pdf-frame-content: footer_content;
+                left: 50pt;
+                width: 512pt;
+                top: 772pt;
+                height: 20pt;
+            }
+          
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%
+        }
+        th, td{
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">Sena Adsi</div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        pagina:
+        <pdf:pagenumber>
+            de
+            <pdf:pagecount>
+    </div>
+
+    <!-- HTML Content -->  
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Rol</th>
+        </tr>
+        <tbody>
+    {% for registro in datos %}
+            <tr>
+                <td>{{ registro.nombre }}</td>
+                <td>{{ registro.apellido }}</td>
+                <td>{{ registro.get_rol_display }}</td>
+                </tr>
+    {% endfor %} 
+    </tbody>
+
+    </table>
+</body>
+
+</html>

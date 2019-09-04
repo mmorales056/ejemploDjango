@@ -1,0 +1,4 @@
+#Pre-requisito
+pip3 install setuptools
+#Version 0.2.3 https://pypi.org/project/xhtml2pdf/
+pip3 install xhtml2pdf

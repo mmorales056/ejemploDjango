@@ -1,7 +1,13 @@
-#from .models import Question
+#Libreria para sacar las rutas relativas del SO
+import os
+#Libreria para reportes en pdf
+from django.template.loader import get_template
+from .utils import render_to_pdf
+
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
+
 from adsi.models import Aprendiz, Fichas
 from django.forms.models import model_to_dict
 
@@ -116,6 +122,17 @@ def verAprendizJson(request, id):
         return JsonResponse(diccionario)
     except Exception as e:
         return HttpResponse(e)
+
+def reportePdf(request):
+    consulta= Aprendiz.objects.all()
+    contexto={'datos': consulta}
+    
+    pdf = render_to_pdf('adsi/reporte.html', contexto)
+    
+    response = HttpResponse(pdf,content_type='application/pdf')
+    #response['Content-Disposition'] ='attachment; filename=Reporte.pdf' con este se guarda el pdf
+    response['Content-Disposition'] = 'filename=Reporte.pdf'
+    return response
 
 
     

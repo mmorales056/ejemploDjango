@@ -1,31 +1,35 @@
 {% extends 'adsi/base.html' %} {% block titulo %}Listado de Aprendices{% endblock %} {% block contenedor %}
 
-<h1>Aprendices</h1>
-<table class="table table-striped">
-    <tr>
-        <th class="mifuente">Nombre</th>
-        <th>Apellido</th>
-        <th>Rol</th>
-        <th>Acciones</th>
 
-    </tr>
-    <tbody>
-        {% for registro in datos %}
+<div class="container">
+    <h1 class="mifuente" style="text-align: center">Aprendices</h1>
+    <table class="table table-striped">
         <tr>
-            <td>{{ registro.nombre }}</td>
-            <td>{{ registro.apellido }}</td>
-            <td>{{ registro.get_rol_display }}</td>
-            <td>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAprendiz" onclick="verAprendiz(' {% url 'adsi:verAprendiz' registro.id %}')">Ver</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAprendiz" onclick="verAprendiz2(' {% url 'adsi:verAprendizJson' registro.id %}')">Ver Json</button>
-                <a href="{% url 'adsi:editarAprendices' registro.id %}">Editar</a> -
-                <a href="{% url 'adsi:eliminarAprendiz' registro.id %}">Eliminar</a>
-            </td>
+            <th class="mifuente">Nombre</th>
+            <th class="mifuente">Apellido</th>
+            <th class="mifuente">Rol</th>
+            <th class="mifuente">Acciones</th>
+
         </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<a href="{% url 'adsi:crearAprendiz' %}">Crear Aprendiz</a>
+        <tbody>
+            {% for registro in datos %}
+            <tr>
+                <td>{{ registro.nombre }}</td>
+                <td>{{ registro.apellido }}</td>
+                <td>{{ registro.get_rol_display }}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAprendiz" onclick="verAprendiz(' {% url 'adsi:verAprendiz' registro.id %}')">Ver</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAprendiz" onclick="verAprendiz2(' {% url 'adsi:verAprendizJson' registro.id %}')">Ver Json</button>
+                    <a href="{% url 'adsi:editarAprendices' registro.id %}">Editar</a> -
+                    <a href="{% url 'adsi:eliminarAprendiz' registro.id %}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'adsi:crearAprendiz' %}">Crear Aprendiz</a>
+</div>
+
 
 
 <!-- Modal -->
@@ -43,7 +47,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
