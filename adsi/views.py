@@ -64,6 +64,19 @@ def aprendizGuardar(request):
     except Exception as e:
         return HttpResponse(e)
 
+def guardarFicha(request):
+    try:
+        q = Aprendiz.objects.get(pk=request.POST['aprendiz'])
+        ficha = Fichas(
+            aprendiz = q,
+            codigo = request.POST['codigo'],
+            programa = request.POST['programa']            
+        )
+        ficha.save()
+        return render(request, 'adsi/index.html')
+    except Exception as e:
+        return HttpResponse(e)
+
 def aprendizListado(request):
     ses = request.session.get('logeado',False)
     if ses and (ses[3]=='1' or ses[3]=='2'):
@@ -72,6 +85,18 @@ def aprendizListado(request):
         return render(request, 'adsi/aprendiz_listar.html', contexto)
     else:
         return HttpResponse("No tiene permisos para ver el listado")
+
+def fichaListado(request):
+    q = Fichas.objects.all()
+    contexto = {'fichas': q}
+    return render(request, 'adsi/fichas_listar.html', contexto)
+    
+
+
+def formularioFichas(request):
+    q = Aprendiz.objects.all()
+    contexto= {'aprendices': q}    
+    return render(request, 'adsi/formulario_fichas.html',contexto)
 
 
 def aprendizEliminar(request, id):

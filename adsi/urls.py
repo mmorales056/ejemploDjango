@@ -16,7 +16,10 @@ urlpatterns = [
     path('logout/',views.logout, name='logout'),
     path('verAprendiz/<int:id>', views.verAprendiz, name="verAprendiz"),
     path('verAprendizJson/<int:id>', views.verAprendizJson, name="verAprendizJson"),
-    path('reportePdf', views.reportePdf, name= 'reportePdf')
+    path('reportePdf/', views.reportePdf, name= 'reportePdf'),
+    path('crearFicha/', views.formularioFichas, name='formfichas'),
+    path('guardarficha',views.guardarFicha, name= 'guardarFicha'),
+    path('listarficha', views.fichaListado, name = "listarfichas")
 
 
 ]

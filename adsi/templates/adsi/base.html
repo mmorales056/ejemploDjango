@@ -39,9 +39,29 @@
             {% elif request.session.logeado.3 == '2' %}
               <a class="dropdown-item" href="{% url 'adsi:crearAprendiz' %}">Crear</a>
               <a class="dropdown-item" href="{% url 'adsi:listarAprendices' %}"> Listar</a>
+              <a class="dropdown-item" href="{% url 'adsi:formfichas' %}"> crearFicha</a>
+              <a class="dropdown-item" href="{% url 'adsi:listarfichas' %}"> Listar</a>
           {% endif %}
         </div>
-      </li>      
+      </li>
+       <a class="nav-link dropdown-toggle" tabindex="-1"  href="#" id="navbardrop" data-toggle="dropdown">
+          Aprendices
+        </a>
+           <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" tabindex="-1"  href="#" id="navbardrop" data-toggle="dropdown">
+          Aprendices
+        </a>
+        <div class="dropdown-menu">
+          {% if request.session.logeado.3 == '1' %}
+            <a class="dropdown-item" href="{% url 'adsi:listarAprendices' %}"> Listar</a>          
+            {% elif request.session.logeado.3 == '2' %}
+              <a class="dropdown-item" href="{% url 'adsi:crearAprendiz' %}">Crear</a>
+              <a class="dropdown-item" href="{% url 'adsi:listarAprendices' %}"> Listar</a>
+              <a class="dropdown-item" href="{% url 'adsi:formfichas' %}"> crearFicha</a>
+              <a class="dropdown-item" href="{% url 'adsi:listarfichas' %}"> Listar</a>
+          {% endif %}
+        </div>
+      </li>     
     </ul>
     <form class="form-inline my-2 my-lg-0 " action="{% url 'adsi:login' %}" method="POST">
       {% csrf_token %}

@@ -1,0 +1,25 @@
+{% extends 'adsi/base.html' %} {% block titulo %}Formulario Fichas{% endblock %} {% block contenedor %}
+<h1>Crear Programa</h1>
+
+
+<form class="was-validated" action="{% url 'adsi:guardarFicha' %}" method="POST">
+    {% csrf_token %}
+    <label> Aprendiz </label> 
+    <select name="aprendiz">
+        {% for a   in aprendices %}
+            <option value=" {{ a.id }}">{{ a.nombre }} </option>
+        {% endfor %}}                
+    </select>
+    <br>
+    <label> Codigo ficha</label>
+    <input type="text" name="codigo">
+    <br>
+
+    <label> Programa </label>
+    <input type="text" name="programa">
+    <br>
+    <input type="submit" value="Enviar" />
+</form>
+
+
+{% endblock %}
